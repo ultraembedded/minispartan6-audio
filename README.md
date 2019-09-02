@@ -34,6 +34,8 @@ This time, I've rebuilt it around my RISC-V (RV32IM) CPU, SDRAM controller and S
 
 The application code will play any MP3s found in the root directory of a FAT32 formatted SD card placed in the microSD card slot of the FPGA dev board.
 
+![](doc/block_diagram.png)
+
 ## Scarab Hardware miniSpartan6+
 ![](doc/minispartan6.jpg)
 
