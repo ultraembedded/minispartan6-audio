@@ -76,7 +76,7 @@ module irq_ctrl
 //-----------------------------------------------------------------
 reg [31:0] wr_data_q;
 
-always @ (posedge clk_i or posedge rst_i)
+always @ (posedge clk_i )
 if (rst_i)
     wr_data_q <= 32'b0;
 else
@@ -101,7 +101,7 @@ assign cfg_wready_o  = cfg_awready_o;
 //-----------------------------------------------------------------
 reg irq_isr_wr_q;
 
-always @ (posedge clk_i or posedge rst_i)
+always @ (posedge clk_i )
 if (rst_i)
     irq_isr_wr_q <= 1'b0;
 else if (write_en_w && (cfg_awaddr_i[7:0] == `IRQ_ISR))
@@ -118,7 +118,7 @@ wire [6:0]  irq_isr_status_out_w = wr_data_q[`IRQ_ISR_STATUS_R];
 //-----------------------------------------------------------------
 reg irq_ipr_wr_q;
 
-always @ (posedge clk_i or posedge rst_i)
+always @ (posedge clk_i )
 if (rst_i)
     irq_ipr_wr_q <= 1'b0;
 else if (write_en_w && (cfg_awaddr_i[7:0] == `IRQ_IPR))
@@ -132,7 +132,7 @@ else
 //-----------------------------------------------------------------
 reg irq_ier_wr_q;
 
-always @ (posedge clk_i or posedge rst_i)
+always @ (posedge clk_i )
 if (rst_i)
     irq_ier_wr_q <= 1'b0;
 else if (write_en_w && (cfg_awaddr_i[7:0] == `IRQ_IER))
@@ -149,7 +149,7 @@ wire [6:0]  irq_ier_enable_out_w = wr_data_q[`IRQ_IER_ENABLE_R];
 //-----------------------------------------------------------------
 reg irq_iar_wr_q;
 
-always @ (posedge clk_i or posedge rst_i)
+always @ (posedge clk_i )
 if (rst_i)
     irq_iar_wr_q <= 1'b0;
 else if (write_en_w && (cfg_awaddr_i[7:0] == `IRQ_IAR))
@@ -160,7 +160,7 @@ else
 // irq_iar_ack [auto_clr]
 reg [6:0]  irq_iar_ack_q;
 
-always @ (posedge clk_i or posedge rst_i)
+always @ (posedge clk_i )
 if (rst_i)
     irq_iar_ack_q <= 7'd`IRQ_IAR_ACK_DEFAULT;
 else if (write_en_w && (cfg_awaddr_i[7:0] == `IRQ_IAR))
@@ -176,7 +176,7 @@ wire [6:0]  irq_iar_ack_out_w = irq_iar_ack_q;
 //-----------------------------------------------------------------
 reg irq_sie_wr_q;
 
-always @ (posedge clk_i or posedge rst_i)
+always @ (posedge clk_i )
 if (rst_i)
     irq_sie_wr_q <= 1'b0;
 else if (write_en_w && (cfg_awaddr_i[7:0] == `IRQ_SIE))
@@ -193,7 +193,7 @@ wire [6:0]  irq_sie_set_out_w = wr_data_q[`IRQ_SIE_SET_R];
 //-----------------------------------------------------------------
 reg irq_cie_wr_q;
 
-always @ (posedge clk_i or posedge rst_i)
+always @ (posedge clk_i )
 if (rst_i)
     irq_cie_wr_q <= 1'b0;
 else if (write_en_w && (cfg_awaddr_i[7:0] == `IRQ_CIE))
@@ -210,7 +210,7 @@ wire [6:0]  irq_cie_clr_out_w = wr_data_q[`IRQ_CIE_CLR_R];
 //-----------------------------------------------------------------
 reg irq_ivr_wr_q;
 
-always @ (posedge clk_i or posedge rst_i)
+always @ (posedge clk_i )
 if (rst_i)
     irq_ivr_wr_q <= 1'b0;
 else if (write_en_w && (cfg_awaddr_i[7:0] == `IRQ_IVR))
@@ -227,7 +227,7 @@ wire [31:0]  irq_ivr_vector_out_w = wr_data_q[`IRQ_IVR_VECTOR_R];
 //-----------------------------------------------------------------
 reg irq_mer_wr_q;
 
-always @ (posedge clk_i or posedge rst_i)
+always @ (posedge clk_i )
 if (rst_i)
     irq_mer_wr_q <= 1'b0;
 else if (write_en_w && (cfg_awaddr_i[7:0] == `IRQ_MER))
@@ -238,7 +238,7 @@ else
 // irq_mer_me [internal]
 reg        irq_mer_me_q;
 
-always @ (posedge clk_i or posedge rst_i)
+always @ (posedge clk_i )
 if (rst_i)
     irq_mer_me_q <= 1'd`IRQ_MER_ME_DEFAULT;
 else if (write_en_w && (cfg_awaddr_i[7:0] == `IRQ_MER))
@@ -294,7 +294,7 @@ end
 //-----------------------------------------------------------------
 reg rvalid_q;
 
-always @ (posedge clk_i or posedge rst_i)
+always @ (posedge clk_i )
 if (rst_i)
     rvalid_q <= 1'b0;
 else if (read_en_w)
@@ -309,7 +309,7 @@ assign cfg_rvalid_o = rvalid_q;
 //-----------------------------------------------------------------
 reg [31:0] rd_data_q;
 
-always @ (posedge clk_i or posedge rst_i)
+always @ (posedge clk_i )
 if (rst_i)
     rd_data_q <= 32'b0;
 else if (!cfg_rvalid_o || cfg_rready_i)
@@ -323,7 +323,7 @@ assign cfg_rresp_o = 2'b0;
 //-----------------------------------------------------------------
 reg bvalid_q;
 
-always @ (posedge clk_i or posedge rst_i)
+always @ (posedge clk_i )
 if (rst_i)
     bvalid_q <= 1'b0;
 else if (write_en_w)

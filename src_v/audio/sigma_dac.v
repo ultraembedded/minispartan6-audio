@@ -67,7 +67,7 @@ always @ *
 always @ *
     sigma_adder_r = delta_adder_r + sigma_latch_q;
 
-always @(posedge clk_i or posedge rst_i) 
+always @ (posedge clk_i )
 begin
     if (rst_i)
     begin

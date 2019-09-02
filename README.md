@@ -48,16 +48,16 @@ Design Summary:
 Number of errors:      0
 Number of warnings:   10
 Slice Logic Utilization:
-  Number of Slice Registers:                 2,670 out of  11,440   23%
-    Number used as Flip Flops:               2,670
+  Number of Slice Registers:                 2,681 out of  11,440   23%
+    Number used as Flip Flops:               2,681
     Number used as Latches:                      0
     Number used as Latch-thrus:                  0
     Number used as AND/OR logics:                0
-  Number of Slice LUTs:                      5,694 out of   5,720   99%
-    Number used as logic:                    5,142 out of   5,720   89%
-      Number using O6 output only:           3,958
-      Number using O5 output only:             261
-      Number using O5 and O6:                  923
+  Number of Slice LUTs:                      5,652 out of   5,720   98%
+    Number used as logic:                    5,072 out of   5,720   88%
+      Number using O6 output only:           3,889
+      Number using O5 output only:             279
+      Number using O5 and O6:                  904
       Number used as ROM:                        0
     Number used as Memory:                     519 out of   1,440   36%
       Number used as Dual Port RAM:            518
@@ -69,21 +69,21 @@ Slice Logic Utilization:
         Number using O6 output only:             1
         Number using O5 output only:             0
         Number using O5 and O6:                  0
-    Number used exclusively as route-thrus:     33
-      Number with same-slice register load:     21
-      Number with same-slice carry load:        12
+    Number used exclusively as route-thrus:     61
+      Number with same-slice register load:     47
+      Number with same-slice carry load:        14
       Number with other load:                    0
 
 Slice Logic Distribution:
   Number of occupied Slices:                 1,430 out of   1,430  100%
-  Number of MUXCYs used:                     1,288 out of   2,860   45%
-  Number of LUT Flip Flop pairs used:        5,710
-    Number with an unused Flip Flop:         3,194 out of   5,710   55%
-    Number with an unused LUT:                  16 out of   5,710    1%
-    Number of fully used LUT-FF pairs:       2,500 out of   5,710   43%
-    Number of unique control sets:             216
+  Number of MUXCYs used:                     1,300 out of   2,860   45%
+  Number of LUT Flip Flop pairs used:        5,701
+    Number with an unused Flip Flop:         3,190 out of   5,701   55%
+    Number with an unused LUT:                  49 out of   5,701    1%
+    Number of fully used LUT-FF pairs:       2,462 out of   5,701   43%
+    Number of unique control sets:             215
     Number of slice register sites lost
-      to control set restrictions:             881 out of  11,440    7%
+      to control set restrictions:             854 out of  11,440    7%
 
   A LUT Flip Flop pair for this architecture represents one LUT paired with
   one Flip Flop within a slice.  A control set is a unique combination of
@@ -92,8 +92,8 @@ Slice Logic Distribution:
   over-mapped for a non-slice resource or if Placement fails.
 
 IO Utilization:
-  Number of bonded IOBs:                       147 out of     186   79%
-    Number of LOCed IOBs:                      147 out of     147  100%
+  Number of bonded IOBs:                        61 out of     186   32%
+    Number of LOCed IOBs:                       61 out of      61  100%
     IOB Flip Flops:                             61
 
 Specific Feature Utilization:

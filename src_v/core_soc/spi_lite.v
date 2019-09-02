@@ -82,7 +82,7 @@ module spi_lite
 //-----------------------------------------------------------------
 reg [31:0] wr_data_q;
 
-always @ (posedge clk_i or posedge rst_i)
+always @ (posedge clk_i )
 if (rst_i)
     wr_data_q <= 32'b0;
 else
@@ -107,7 +107,7 @@ assign cfg_wready_o  = cfg_awready_o;
 //-----------------------------------------------------------------
 reg spi_dgier_wr_q;
 
-always @ (posedge clk_i or posedge rst_i)
+always @ (posedge clk_i )
 if (rst_i)
     spi_dgier_wr_q <= 1'b0;
 else if (write_en_w && (cfg_awaddr_i[7:0] == `SPI_DGIER))
@@ -118,7 +118,7 @@ else
 // spi_dgier_gie [internal]
 reg        spi_dgier_gie_q;
 
-always @ (posedge clk_i or posedge rst_i)
+always @ (posedge clk_i )
 if (rst_i)
     spi_dgier_gie_q <= 1'd`SPI_DGIER_GIE_DEFAULT;
 else if (write_en_w && (cfg_awaddr_i[7:0] == `SPI_DGIER))
@@ -132,7 +132,7 @@ wire        spi_dgier_gie_out_w = spi_dgier_gie_q;
 //-----------------------------------------------------------------
 reg spi_ipisr_wr_q;
 
-always @ (posedge clk_i or posedge rst_i)
+always @ (posedge clk_i )
 if (rst_i)
     spi_ipisr_wr_q <= 1'b0;
 else if (write_en_w && (cfg_awaddr_i[7:0] == `SPI_IPISR))
@@ -149,7 +149,7 @@ wire        spi_ipisr_tx_empty_out_w = wr_data_q[`SPI_IPISR_TX_EMPTY_R];
 //-----------------------------------------------------------------
 reg spi_ipier_wr_q;
 
-always @ (posedge clk_i or posedge rst_i)
+always @ (posedge clk_i )
 if (rst_i)
     spi_ipier_wr_q <= 1'b0;
 else if (write_en_w && (cfg_awaddr_i[7:0] == `SPI_IPIER))
@@ -160,7 +160,7 @@ else
 // spi_ipier_tx_empty [internal]
 reg        spi_ipier_tx_empty_q;
 
-always @ (posedge clk_i or posedge rst_i)
+always @ (posedge clk_i )
 if (rst_i)
     spi_ipier_tx_empty_q <= 1'd`SPI_IPIER_TX_EMPTY_DEFAULT;
 else if (write_en_w && (cfg_awaddr_i[7:0] == `SPI_IPIER))
@@ -174,7 +174,7 @@ wire        spi_ipier_tx_empty_out_w = spi_ipier_tx_empty_q;
 //-----------------------------------------------------------------
 reg spi_srr_wr_q;
 
-always @ (posedge clk_i or posedge rst_i)
+always @ (posedge clk_i )
 if (rst_i)
     spi_srr_wr_q <= 1'b0;
 else if (write_en_w && (cfg_awaddr_i[7:0] == `SPI_SRR))
@@ -185,7 +185,7 @@ else
 // spi_srr_reset [auto_clr]
 reg [31:0]  spi_srr_reset_q;
 
-always @ (posedge clk_i or posedge rst_i)
+always @ (posedge clk_i )
 if (rst_i)
     spi_srr_reset_q <= 32'd`SPI_SRR_RESET_DEFAULT;
 else if (write_en_w && (cfg_awaddr_i[7:0] == `SPI_SRR))
@@ -201,7 +201,7 @@ wire [31:0]  spi_srr_reset_out_w = spi_srr_reset_q;
 //-----------------------------------------------------------------
 reg spi_cr_wr_q;
 
-always @ (posedge clk_i or posedge rst_i)
+always @ (posedge clk_i )
 if (rst_i)
     spi_cr_wr_q <= 1'b0;
 else if (write_en_w && (cfg_awaddr_i[7:0] == `SPI_CR))
@@ -212,7 +212,7 @@ else
 // spi_cr_loop [internal]
 reg        spi_cr_loop_q;
 
-always @ (posedge clk_i or posedge rst_i)
+always @ (posedge clk_i )
 if (rst_i)
     spi_cr_loop_q <= 1'd`SPI_CR_LOOP_DEFAULT;
 else if (write_en_w && (cfg_awaddr_i[7:0] == `SPI_CR))
@@ -224,7 +224,7 @@ wire        spi_cr_loop_out_w = spi_cr_loop_q;
 // spi_cr_spe [internal]
 reg        spi_cr_spe_q;
 
-always @ (posedge clk_i or posedge rst_i)
+always @ (posedge clk_i )
 if (rst_i)
     spi_cr_spe_q <= 1'd`SPI_CR_SPE_DEFAULT;
 else if (write_en_w && (cfg_awaddr_i[7:0] == `SPI_CR))
@@ -236,7 +236,7 @@ wire        spi_cr_spe_out_w = spi_cr_spe_q;
 // spi_cr_master [internal]
 reg        spi_cr_master_q;
 
-always @ (posedge clk_i or posedge rst_i)
+always @ (posedge clk_i )
 if (rst_i)
     spi_cr_master_q <= 1'd`SPI_CR_MASTER_DEFAULT;
 else if (write_en_w && (cfg_awaddr_i[7:0] == `SPI_CR))
@@ -248,7 +248,7 @@ wire        spi_cr_master_out_w = spi_cr_master_q;
 // spi_cr_cpol [internal]
 reg        spi_cr_cpol_q;
 
-always @ (posedge clk_i or posedge rst_i)
+always @ (posedge clk_i )
 if (rst_i)
     spi_cr_cpol_q <= 1'd`SPI_CR_CPOL_DEFAULT;
 else if (write_en_w && (cfg_awaddr_i[7:0] == `SPI_CR))
@@ -260,7 +260,7 @@ wire        spi_cr_cpol_out_w = spi_cr_cpol_q;
 // spi_cr_cpha [internal]
 reg        spi_cr_cpha_q;
 
-always @ (posedge clk_i or posedge rst_i)
+always @ (posedge clk_i )
 if (rst_i)
     spi_cr_cpha_q <= 1'd`SPI_CR_CPHA_DEFAULT;
 else if (write_en_w && (cfg_awaddr_i[7:0] == `SPI_CR))
@@ -272,7 +272,7 @@ wire        spi_cr_cpha_out_w = spi_cr_cpha_q;
 // spi_cr_txfifo_rst [auto_clr]
 reg        spi_cr_txfifo_rst_q;
 
-always @ (posedge clk_i or posedge rst_i)
+always @ (posedge clk_i )
 if (rst_i)
     spi_cr_txfifo_rst_q <= 1'd`SPI_CR_TXFIFO_RST_DEFAULT;
 else if (write_en_w && (cfg_awaddr_i[7:0] == `SPI_CR))
@@ -286,7 +286,7 @@ wire        spi_cr_txfifo_rst_out_w = spi_cr_txfifo_rst_q;
 // spi_cr_rxfifo_rst [auto_clr]
 reg        spi_cr_rxfifo_rst_q;
 
-always @ (posedge clk_i or posedge rst_i)
+always @ (posedge clk_i )
 if (rst_i)
     spi_cr_rxfifo_rst_q <= 1'd`SPI_CR_RXFIFO_RST_DEFAULT;
 else if (write_en_w && (cfg_awaddr_i[7:0] == `SPI_CR))
@@ -300,7 +300,7 @@ wire        spi_cr_rxfifo_rst_out_w = spi_cr_rxfifo_rst_q;
 // spi_cr_manual_ss [internal]
 reg        spi_cr_manual_ss_q;
 
-always @ (posedge clk_i or posedge rst_i)
+always @ (posedge clk_i )
 if (rst_i)
     spi_cr_manual_ss_q <= 1'd`SPI_CR_MANUAL_SS_DEFAULT;
 else if (write_en_w && (cfg_awaddr_i[7:0] == `SPI_CR))
@@ -312,7 +312,7 @@ wire        spi_cr_manual_ss_out_w = spi_cr_manual_ss_q;
 // spi_cr_trans_inhibit [internal]
 reg        spi_cr_trans_inhibit_q;
 
-always @ (posedge clk_i or posedge rst_i)
+always @ (posedge clk_i )
 if (rst_i)
     spi_cr_trans_inhibit_q <= 1'd`SPI_CR_TRANS_INHIBIT_DEFAULT;
 else if (write_en_w && (cfg_awaddr_i[7:0] == `SPI_CR))
@@ -324,7 +324,7 @@ wire        spi_cr_trans_inhibit_out_w = spi_cr_trans_inhibit_q;
 // spi_cr_lsb_first [internal]
 reg        spi_cr_lsb_first_q;
 
-always @ (posedge clk_i or posedge rst_i)
+always @ (posedge clk_i )
 if (rst_i)
     spi_cr_lsb_first_q <= 1'd`SPI_CR_LSB_FIRST_DEFAULT;
 else if (write_en_w && (cfg_awaddr_i[7:0] == `SPI_CR))
@@ -338,7 +338,7 @@ wire        spi_cr_lsb_first_out_w = spi_cr_lsb_first_q;
 //-----------------------------------------------------------------
 reg spi_sr_wr_q;
 
-always @ (posedge clk_i or posedge rst_i)
+always @ (posedge clk_i )
 if (rst_i)
     spi_sr_wr_q <= 1'b0;
 else if (write_en_w && (cfg_awaddr_i[7:0] == `SPI_SR))
@@ -355,7 +355,7 @@ else
 //-----------------------------------------------------------------
 reg spi_dtr_wr_q;
 
-always @ (posedge clk_i or posedge rst_i)
+always @ (posedge clk_i )
 if (rst_i)
     spi_dtr_wr_q <= 1'b0;
 else if (write_en_w && (cfg_awaddr_i[7:0] == `SPI_DTR))
@@ -372,7 +372,7 @@ wire [7:0]  spi_dtr_data_out_w = wr_data_q[`SPI_DTR_DATA_R];
 //-----------------------------------------------------------------
 reg spi_drr_wr_q;
 
-always @ (posedge clk_i or posedge rst_i)
+always @ (posedge clk_i )
 if (rst_i)
     spi_drr_wr_q <= 1'b0;
 else if (write_en_w && (cfg_awaddr_i[7:0] == `SPI_DRR))
@@ -386,7 +386,7 @@ else
 //-----------------------------------------------------------------
 reg spi_ssr_wr_q;
 
-always @ (posedge clk_i or posedge rst_i)
+always @ (posedge clk_i )
 if (rst_i)
     spi_ssr_wr_q <= 1'b0;
 else if (write_en_w && (cfg_awaddr_i[7:0] == `SPI_SSR))
@@ -397,7 +397,7 @@ else
 // spi_ssr_value [internal]
 reg [7:0]  spi_ssr_value_q;
 
-always @ (posedge clk_i or posedge rst_i)
+always @ (posedge clk_i )
 if (rst_i)
     spi_ssr_value_q <= 8'd`SPI_SSR_VALUE_DEFAULT;
 else if (write_en_w && (cfg_awaddr_i[7:0] == `SPI_SSR))
@@ -476,7 +476,7 @@ end
 //-----------------------------------------------------------------
 reg rvalid_q;
 
-always @ (posedge clk_i or posedge rst_i)
+always @ (posedge clk_i )
 if (rst_i)
     rvalid_q <= 1'b0;
 else if (read_en_w)
@@ -491,7 +491,7 @@ assign cfg_rvalid_o = rvalid_q;
 //-----------------------------------------------------------------
 reg [31:0] rd_data_q;
 
-always @ (posedge clk_i or posedge rst_i)
+always @ (posedge clk_i )
 if (rst_i)
     rd_data_q <= 32'b0;
 else if (!cfg_rvalid_o || cfg_rready_i)
@@ -505,7 +505,7 @@ assign cfg_rresp_o = 2'b0;
 //-----------------------------------------------------------------
 reg bvalid_q;
 
-always @ (posedge clk_i or posedge rst_i)
+always @ (posedge clk_i )
 if (rst_i)
     bvalid_q <= 1'b0;
 else if (write_en_w)

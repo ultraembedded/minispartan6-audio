@@ -289,7 +289,7 @@ begin
     tx_busy_q      <= 1'b1;
 end
 
-always @ (posedge clk_i or posedge rst_i )
+always @ (posedge clk_i )
 if (rst_i)
     tx_bits_q  <= 4'd0;
 else if (tx_sample_w && tx_busy_q)

@@ -71,7 +71,7 @@ module audio
 //-----------------------------------------------------------------
 reg [31:0] wr_data_q;
 
-always @ (posedge clk_i or posedge rst_i)
+always @ (posedge clk_i )
 if (rst_i)
     wr_data_q <= 32'b0;
 else
@@ -96,7 +96,7 @@ assign cfg_wready_o  = cfg_awready_o;
 //-----------------------------------------------------------------
 reg audio_cfg_wr_q;
 
-always @ (posedge clk_i or posedge rst_i)
+always @ (posedge clk_i )
 if (rst_i)
     audio_cfg_wr_q <= 1'b0;
 else if (write_en_w && (cfg_awaddr_i[7:0] == `AUDIO_CFG))
@@ -107,7 +107,7 @@ else
 // audio_cfg_int_threshold [internal]
 reg [15:0]  audio_cfg_int_threshold_q;
 
-always @ (posedge clk_i or posedge rst_i)
+always @ (posedge clk_i )
 if (rst_i)
     audio_cfg_int_threshold_q <= 16'd`AUDIO_CFG_INT_THRESHOLD_DEFAULT;
 else if (write_en_w && (cfg_awaddr_i[7:0] == `AUDIO_CFG))
@@ -119,7 +119,7 @@ wire [15:0]  audio_cfg_int_threshold_out_w = audio_cfg_int_threshold_q;
 // audio_cfg_byte_swap [internal]
 reg        audio_cfg_byte_swap_q;
 
-always @ (posedge clk_i or posedge rst_i)
+always @ (posedge clk_i )
 if (rst_i)
     audio_cfg_byte_swap_q <= 1'd`AUDIO_CFG_BYTE_SWAP_DEFAULT;
 else if (write_en_w && (cfg_awaddr_i[7:0] == `AUDIO_CFG))
@@ -131,7 +131,7 @@ wire        audio_cfg_byte_swap_out_w = audio_cfg_byte_swap_q;
 // audio_cfg_ch_swap [internal]
 reg        audio_cfg_ch_swap_q;
 
-always @ (posedge clk_i or posedge rst_i)
+always @ (posedge clk_i )
 if (rst_i)
     audio_cfg_ch_swap_q <= 1'd`AUDIO_CFG_CH_SWAP_DEFAULT;
 else if (write_en_w && (cfg_awaddr_i[7:0] == `AUDIO_CFG))
@@ -143,7 +143,7 @@ wire        audio_cfg_ch_swap_out_w = audio_cfg_ch_swap_q;
 // audio_cfg_target [internal]
 reg [1:0]  audio_cfg_target_q;
 
-always @ (posedge clk_i or posedge rst_i)
+always @ (posedge clk_i )
 if (rst_i)
     audio_cfg_target_q <= 2'd`AUDIO_CFG_TARGET_DEFAULT;
 else if (write_en_w && (cfg_awaddr_i[7:0] == `AUDIO_CFG))
@@ -155,7 +155,7 @@ wire [1:0]  audio_cfg_target_out_w = audio_cfg_target_q;
 // audio_cfg_vol_ctrl [internal]
 reg [2:0]  audio_cfg_vol_ctrl_q;
 
-always @ (posedge clk_i or posedge rst_i)
+always @ (posedge clk_i )
 if (rst_i)
     audio_cfg_vol_ctrl_q <= 3'd`AUDIO_CFG_VOL_CTRL_DEFAULT;
 else if (write_en_w && (cfg_awaddr_i[7:0] == `AUDIO_CFG))
@@ -167,7 +167,7 @@ wire [2:0]  audio_cfg_vol_ctrl_out_w = audio_cfg_vol_ctrl_q;
 // audio_cfg_buffer_rst [auto_clr]
 reg        audio_cfg_buffer_rst_q;
 
-always @ (posedge clk_i or posedge rst_i)
+always @ (posedge clk_i )
 if (rst_i)
     audio_cfg_buffer_rst_q <= 1'd`AUDIO_CFG_BUFFER_RST_DEFAULT;
 else if (write_en_w && (cfg_awaddr_i[7:0] == `AUDIO_CFG))
@@ -183,7 +183,7 @@ wire        audio_cfg_buffer_rst_out_w = audio_cfg_buffer_rst_q;
 //-----------------------------------------------------------------
 reg audio_status_wr_q;
 
-always @ (posedge clk_i or posedge rst_i)
+always @ (posedge clk_i )
 if (rst_i)
     audio_status_wr_q <= 1'b0;
 else if (write_en_w && (cfg_awaddr_i[7:0] == `AUDIO_STATUS))
@@ -199,7 +199,7 @@ else
 //-----------------------------------------------------------------
 reg audio_clk_div_wr_q;
 
-always @ (posedge clk_i or posedge rst_i)
+always @ (posedge clk_i )
 if (rst_i)
     audio_clk_div_wr_q <= 1'b0;
 else if (write_en_w && (cfg_awaddr_i[7:0] == `AUDIO_CLK_DIV))
@@ -210,7 +210,7 @@ else
 // audio_clk_div_whole_cycles [internal]
 reg [15:0]  audio_clk_div_whole_cycles_q;
 
-always @ (posedge clk_i or posedge rst_i)
+always @ (posedge clk_i )
 if (rst_i)
     audio_clk_div_whole_cycles_q <= 16'd`AUDIO_CLK_DIV_WHOLE_CYCLES_DEFAULT;
 else if (write_en_w && (cfg_awaddr_i[7:0] == `AUDIO_CLK_DIV))
@@ -224,7 +224,7 @@ wire [15:0]  audio_clk_div_whole_cycles_out_w = audio_clk_div_whole_cycles_q;
 //-----------------------------------------------------------------
 reg audio_clk_frac_wr_q;
 
-always @ (posedge clk_i or posedge rst_i)
+always @ (posedge clk_i )
 if (rst_i)
     audio_clk_frac_wr_q <= 1'b0;
 else if (write_en_w && (cfg_awaddr_i[7:0] == `AUDIO_CLK_FRAC))
@@ -235,7 +235,7 @@ else
 // audio_clk_frac_numerator [internal]
 reg [15:0]  audio_clk_frac_numerator_q;
 
-always @ (posedge clk_i or posedge rst_i)
+always @ (posedge clk_i )
 if (rst_i)
     audio_clk_frac_numerator_q <= 16'd`AUDIO_CLK_FRAC_NUMERATOR_DEFAULT;
 else if (write_en_w && (cfg_awaddr_i[7:0] == `AUDIO_CLK_FRAC))
@@ -247,7 +247,7 @@ wire [15:0]  audio_clk_frac_numerator_out_w = audio_clk_frac_numerator_q;
 // audio_clk_frac_denominator [internal]
 reg [15:0]  audio_clk_frac_denominator_q;
 
-always @ (posedge clk_i or posedge rst_i)
+always @ (posedge clk_i )
 if (rst_i)
     audio_clk_frac_denominator_q <= 16'd`AUDIO_CLK_FRAC_DENOMINATOR_DEFAULT;
 else if (write_en_w && (cfg_awaddr_i[7:0] == `AUDIO_CLK_FRAC))
@@ -261,7 +261,7 @@ wire [15:0]  audio_clk_frac_denominator_out_w = audio_clk_frac_denominator_q;
 //-----------------------------------------------------------------
 reg audio_fifo_write_wr_q;
 
-always @ (posedge clk_i or posedge rst_i)
+always @ (posedge clk_i )
 if (rst_i)
     audio_fifo_write_wr_q <= 1'b0;
 else if (write_en_w && (cfg_awaddr_i[7:0] >= `AUDIO_FIFO_WRITE && cfg_awaddr_i[7:0] < (`AUDIO_FIFO_WRITE + 8'd32)))
@@ -326,7 +326,7 @@ end
 //-----------------------------------------------------------------
 reg rvalid_q;
 
-always @ (posedge clk_i or posedge rst_i)
+always @ (posedge clk_i )
 if (rst_i)
     rvalid_q <= 1'b0;
 else if (read_en_w)
@@ -341,7 +341,7 @@ assign cfg_rvalid_o = rvalid_q;
 //-----------------------------------------------------------------
 reg [31:0] rd_data_q;
 
-always @ (posedge clk_i or posedge rst_i)
+always @ (posedge clk_i )
 if (rst_i)
     rd_data_q <= 32'b0;
 else if (!cfg_rvalid_o || cfg_rready_i)
@@ -355,7 +355,7 @@ assign cfg_rresp_o = 2'b0;
 //-----------------------------------------------------------------
 reg bvalid_q;
 
-always @ (posedge clk_i or posedge rst_i)
+always @ (posedge clk_i )
 if (rst_i)
     bvalid_q <= 1'b0;
 else if (write_en_w)

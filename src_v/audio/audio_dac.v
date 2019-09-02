@@ -52,16 +52,6 @@ module audio_dac
 
 
 
-//-----------------------------------------------------------------
-// Params
-//-----------------------------------------------------------------
-localparam CLK_RATE_KHZ          = 50000;
-localparam AUDIO_RATE            = 44100;
-
-// Generated params
-localparam WHOLE_CYCLES          = (CLK_RATE_KHZ*1000) / (AUDIO_RATE*128);
-localparam ERROR_BASE            = 10000;
-localparam [63:0] ERRORS_PER_BIT = ((CLK_RATE_KHZ * 1000 * ERROR_BASE) / (AUDIO_RATE*128)) - (WHOLE_CYCLES * ERROR_BASE);
 
 //-----------------------------------------------------------------
 // External clock source
@@ -77,7 +67,7 @@ reg [15:0] left_q;
 reg [15:0] right_q;
 reg        pop_q;
 
-always @ (posedge rst_i or posedge clk_i )
+always @ (posedge clk_i )
 begin
    if (rst_i)
    begin

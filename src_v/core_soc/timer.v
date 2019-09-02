@@ -69,7 +69,7 @@ module timer
 //-----------------------------------------------------------------
 reg [31:0] wr_data_q;
 
-always @ (posedge clk_i or posedge rst_i)
+always @ (posedge clk_i )
 if (rst_i)
     wr_data_q <= 32'b0;
 else
@@ -94,7 +94,7 @@ assign cfg_wready_o  = cfg_awready_o;
 //-----------------------------------------------------------------
 reg timer_ctrl0_wr_q;
 
-always @ (posedge clk_i or posedge rst_i)
+always @ (posedge clk_i )
 if (rst_i)
     timer_ctrl0_wr_q <= 1'b0;
 else if (write_en_w && (cfg_awaddr_i[7:0] == `TIMER_CTRL0))
@@ -105,7 +105,7 @@ else
 // timer_ctrl0_interrupt [internal]
 reg        timer_ctrl0_interrupt_q;
 
-always @ (posedge clk_i or posedge rst_i)
+always @ (posedge clk_i )
 if (rst_i)
     timer_ctrl0_interrupt_q <= 1'd`TIMER_CTRL0_INTERRUPT_DEFAULT;
 else if (write_en_w && (cfg_awaddr_i[7:0] == `TIMER_CTRL0))
@@ -117,7 +117,7 @@ wire        timer_ctrl0_interrupt_out_w = timer_ctrl0_interrupt_q;
 // timer_ctrl0_enable [internal]
 reg        timer_ctrl0_enable_q;
 
-always @ (posedge clk_i or posedge rst_i)
+always @ (posedge clk_i )
 if (rst_i)
     timer_ctrl0_enable_q <= 1'd`TIMER_CTRL0_ENABLE_DEFAULT;
 else if (write_en_w && (cfg_awaddr_i[7:0] == `TIMER_CTRL0))
@@ -131,7 +131,7 @@ wire        timer_ctrl0_enable_out_w = timer_ctrl0_enable_q;
 //-----------------------------------------------------------------
 reg timer_cmp0_wr_q;
 
-always @ (posedge clk_i or posedge rst_i)
+always @ (posedge clk_i )
 if (rst_i)
     timer_cmp0_wr_q <= 1'b0;
 else if (write_en_w && (cfg_awaddr_i[7:0] == `TIMER_CMP0))
@@ -142,7 +142,7 @@ else
 // timer_cmp0_value [internal]
 reg [31:0]  timer_cmp0_value_q;
 
-always @ (posedge clk_i or posedge rst_i)
+always @ (posedge clk_i )
 if (rst_i)
     timer_cmp0_value_q <= 32'd`TIMER_CMP0_VALUE_DEFAULT;
 else if (write_en_w && (cfg_awaddr_i[7:0] == `TIMER_CMP0))
@@ -156,7 +156,7 @@ wire [31:0]  timer_cmp0_value_out_w = timer_cmp0_value_q;
 //-----------------------------------------------------------------
 reg timer_val0_wr_q;
 
-always @ (posedge clk_i or posedge rst_i)
+always @ (posedge clk_i )
 if (rst_i)
     timer_val0_wr_q <= 1'b0;
 else if (write_en_w && (cfg_awaddr_i[7:0] == `TIMER_VAL0))
@@ -173,7 +173,7 @@ wire [31:0]  timer_val0_current_out_w = wr_data_q[`TIMER_VAL0_CURRENT_R];
 //-----------------------------------------------------------------
 reg timer_ctrl1_wr_q;
 
-always @ (posedge clk_i or posedge rst_i)
+always @ (posedge clk_i )
 if (rst_i)
     timer_ctrl1_wr_q <= 1'b0;
 else if (write_en_w && (cfg_awaddr_i[7:0] == `TIMER_CTRL1))
@@ -184,7 +184,7 @@ else
 // timer_ctrl1_interrupt [internal]
 reg        timer_ctrl1_interrupt_q;
 
-always @ (posedge clk_i or posedge rst_i)
+always @ (posedge clk_i )
 if (rst_i)
     timer_ctrl1_interrupt_q <= 1'd`TIMER_CTRL1_INTERRUPT_DEFAULT;
 else if (write_en_w && (cfg_awaddr_i[7:0] == `TIMER_CTRL1))
@@ -196,7 +196,7 @@ wire        timer_ctrl1_interrupt_out_w = timer_ctrl1_interrupt_q;
 // timer_ctrl1_enable [internal]
 reg        timer_ctrl1_enable_q;
 
-always @ (posedge clk_i or posedge rst_i)
+always @ (posedge clk_i )
 if (rst_i)
     timer_ctrl1_enable_q <= 1'd`TIMER_CTRL1_ENABLE_DEFAULT;
 else if (write_en_w && (cfg_awaddr_i[7:0] == `TIMER_CTRL1))
@@ -210,7 +210,7 @@ wire        timer_ctrl1_enable_out_w = timer_ctrl1_enable_q;
 //-----------------------------------------------------------------
 reg timer_cmp1_wr_q;
 
-always @ (posedge clk_i or posedge rst_i)
+always @ (posedge clk_i )
 if (rst_i)
     timer_cmp1_wr_q <= 1'b0;
 else if (write_en_w && (cfg_awaddr_i[7:0] == `TIMER_CMP1))
@@ -221,7 +221,7 @@ else
 // timer_cmp1_value [internal]
 reg [31:0]  timer_cmp1_value_q;
 
-always @ (posedge clk_i or posedge rst_i)
+always @ (posedge clk_i )
 if (rst_i)
     timer_cmp1_value_q <= 32'd`TIMER_CMP1_VALUE_DEFAULT;
 else if (write_en_w && (cfg_awaddr_i[7:0] == `TIMER_CMP1))
@@ -235,7 +235,7 @@ wire [31:0]  timer_cmp1_value_out_w = timer_cmp1_value_q;
 //-----------------------------------------------------------------
 reg timer_val1_wr_q;
 
-always @ (posedge clk_i or posedge rst_i)
+always @ (posedge clk_i )
 if (rst_i)
     timer_val1_wr_q <= 1'b0;
 else if (write_en_w && (cfg_awaddr_i[7:0] == `TIMER_VAL1))
@@ -298,7 +298,7 @@ end
 //-----------------------------------------------------------------
 reg rvalid_q;
 
-always @ (posedge clk_i or posedge rst_i)
+always @ (posedge clk_i )
 if (rst_i)
     rvalid_q <= 1'b0;
 else if (read_en_w)
@@ -313,7 +313,7 @@ assign cfg_rvalid_o = rvalid_q;
 //-----------------------------------------------------------------
 reg [31:0] rd_data_q;
 
-always @ (posedge clk_i or posedge rst_i)
+always @ (posedge clk_i )
 if (rst_i)
     rd_data_q <= 32'b0;
 else if (!cfg_rvalid_o || cfg_rready_i)
@@ -327,7 +327,7 @@ assign cfg_rresp_o = 2'b0;
 //-----------------------------------------------------------------
 reg bvalid_q;
 
-always @ (posedge clk_i or posedge rst_i)
+always @ (posedge clk_i )
 if (rst_i)
     bvalid_q <= 1'b0;
 else if (write_en_w)

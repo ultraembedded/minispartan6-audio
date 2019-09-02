@@ -81,7 +81,7 @@ module uart_lite
 //-----------------------------------------------------------------
 reg [31:0] wr_data_q;
 
-always @ (posedge clk_i or posedge rst_i)
+always @ (posedge clk_i )
 if (rst_i)
     wr_data_q <= 32'b0;
 else
@@ -106,7 +106,7 @@ assign cfg_wready_o  = cfg_awready_o;
 //-----------------------------------------------------------------
 reg ulite_rx_wr_q;
 
-always @ (posedge clk_i or posedge rst_i)
+always @ (posedge clk_i )
 if (rst_i)
     ulite_rx_wr_q <= 1'b0;
 else if (write_en_w && (cfg_awaddr_i[7:0] == `ULITE_RX))
@@ -120,7 +120,7 @@ else
 //-----------------------------------------------------------------
 reg ulite_tx_wr_q;
 
-always @ (posedge clk_i or posedge rst_i)
+always @ (posedge clk_i )
 if (rst_i)
     ulite_tx_wr_q <= 1'b0;
 else if (write_en_w && (cfg_awaddr_i[7:0] == `ULITE_TX))
@@ -137,7 +137,7 @@ wire [7:0]  ulite_tx_data_out_w = wr_data_q[`ULITE_TX_DATA_R];
 //-----------------------------------------------------------------
 reg ulite_status_wr_q;
 
-always @ (posedge clk_i or posedge rst_i)
+always @ (posedge clk_i )
 if (rst_i)
     ulite_status_wr_q <= 1'b0;
 else if (write_en_w && (cfg_awaddr_i[7:0] == `ULITE_STATUS))
@@ -155,7 +155,7 @@ else
 //-----------------------------------------------------------------
 reg ulite_control_wr_q;
 
-always @ (posedge clk_i or posedge rst_i)
+always @ (posedge clk_i )
 if (rst_i)
     ulite_control_wr_q <= 1'b0;
 else if (write_en_w && (cfg_awaddr_i[7:0] == `ULITE_CONTROL))
@@ -166,7 +166,7 @@ else
 // ulite_control_ie [internal]
 reg        ulite_control_ie_q;
 
-always @ (posedge clk_i or posedge rst_i)
+always @ (posedge clk_i )
 if (rst_i)
     ulite_control_ie_q <= 1'd`ULITE_CONTROL_IE_DEFAULT;
 else if (write_en_w && (cfg_awaddr_i[7:0] == `ULITE_CONTROL))
@@ -178,7 +178,7 @@ wire        ulite_control_ie_out_w = ulite_control_ie_q;
 // ulite_control_rst_rx [auto_clr]
 reg        ulite_control_rst_rx_q;
 
-always @ (posedge clk_i or posedge rst_i)
+always @ (posedge clk_i )
 if (rst_i)
     ulite_control_rst_rx_q <= 1'd`ULITE_CONTROL_RST_RX_DEFAULT;
 else if (write_en_w && (cfg_awaddr_i[7:0] == `ULITE_CONTROL))
@@ -192,7 +192,7 @@ wire        ulite_control_rst_rx_out_w = ulite_control_rst_rx_q;
 // ulite_control_rst_tx [auto_clr]
 reg        ulite_control_rst_tx_q;
 
-always @ (posedge clk_i or posedge rst_i)
+always @ (posedge clk_i )
 if (rst_i)
     ulite_control_rst_tx_q <= 1'd`ULITE_CONTROL_RST_TX_DEFAULT;
 else if (write_en_w && (cfg_awaddr_i[7:0] == `ULITE_CONTROL))
@@ -248,7 +248,7 @@ end
 //-----------------------------------------------------------------
 reg rvalid_q;
 
-always @ (posedge clk_i or posedge rst_i)
+always @ (posedge clk_i )
 if (rst_i)
     rvalid_q <= 1'b0;
 else if (read_en_w)
@@ -263,7 +263,7 @@ assign cfg_rvalid_o = rvalid_q;
 //-----------------------------------------------------------------
 reg [31:0] rd_data_q;
 
-always @ (posedge clk_i or posedge rst_i)
+always @ (posedge clk_i )
 if (rst_i)
     rd_data_q <= 32'b0;
 else if (!cfg_rvalid_o || cfg_rready_i)
@@ -277,7 +277,7 @@ assign cfg_rresp_o = 2'b0;
 //-----------------------------------------------------------------
 reg bvalid_q;
 
-always @ (posedge clk_i or posedge rst_i)
+always @ (posedge clk_i )
 if (rst_i)
     bvalid_q <= 1'b0;
 else if (write_en_w)

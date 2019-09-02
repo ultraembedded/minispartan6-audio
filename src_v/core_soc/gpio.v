@@ -72,7 +72,7 @@ module gpio
 //-----------------------------------------------------------------
 reg [31:0] wr_data_q;
 
-always @ (posedge clk_i or posedge rst_i)
+always @ (posedge clk_i )
 if (rst_i)
     wr_data_q <= 32'b0;
 else
@@ -97,7 +97,7 @@ assign cfg_wready_o  = cfg_awready_o;
 //-----------------------------------------------------------------
 reg gpio_direction_wr_q;
 
-always @ (posedge clk_i or posedge rst_i)
+always @ (posedge clk_i )
 if (rst_i)
     gpio_direction_wr_q <= 1'b0;
 else if (write_en_w && (cfg_awaddr_i[7:0] == `GPIO_DIRECTION))
@@ -108,7 +108,7 @@ else
 // gpio_direction_output [internal]
 reg [31:0]  gpio_direction_output_q;
 
-always @ (posedge clk_i or posedge rst_i)
+always @ (posedge clk_i )
 if (rst_i)
     gpio_direction_output_q <= 32'd`GPIO_DIRECTION_OUTPUT_DEFAULT;
 else if (write_en_w && (cfg_awaddr_i[7:0] == `GPIO_DIRECTION))
@@ -122,7 +122,7 @@ wire [31:0]  gpio_direction_output_out_w = gpio_direction_output_q;
 //-----------------------------------------------------------------
 reg gpio_input_wr_q;
 
-always @ (posedge clk_i or posedge rst_i)
+always @ (posedge clk_i )
 if (rst_i)
     gpio_input_wr_q <= 1'b0;
 else if (write_en_w && (cfg_awaddr_i[7:0] == `GPIO_INPUT))
@@ -136,7 +136,7 @@ else
 //-----------------------------------------------------------------
 reg gpio_output_wr_q;
 
-always @ (posedge clk_i or posedge rst_i)
+always @ (posedge clk_i )
 if (rst_i)
     gpio_output_wr_q <= 1'b0;
 else if (write_en_w && (cfg_awaddr_i[7:0] == `GPIO_OUTPUT))
@@ -153,7 +153,7 @@ wire [31:0]  gpio_output_data_out_w = wr_data_q[`GPIO_OUTPUT_DATA_R];
 //-----------------------------------------------------------------
 reg gpio_output_set_wr_q;
 
-always @ (posedge clk_i or posedge rst_i)
+always @ (posedge clk_i )
 if (rst_i)
     gpio_output_set_wr_q <= 1'b0;
 else if (write_en_w && (cfg_awaddr_i[7:0] == `GPIO_OUTPUT_SET))
@@ -170,7 +170,7 @@ wire [31:0]  gpio_output_set_data_out_w = wr_data_q[`GPIO_OUTPUT_SET_DATA_R];
 //-----------------------------------------------------------------
 reg gpio_output_clr_wr_q;
 
-always @ (posedge clk_i or posedge rst_i)
+always @ (posedge clk_i )
 if (rst_i)
     gpio_output_clr_wr_q <= 1'b0;
 else if (write_en_w && (cfg_awaddr_i[7:0] == `GPIO_OUTPUT_CLR))
@@ -187,7 +187,7 @@ wire [31:0]  gpio_output_clr_data_out_w = wr_data_q[`GPIO_OUTPUT_CLR_DATA_R];
 //-----------------------------------------------------------------
 reg gpio_int_mask_wr_q;
 
-always @ (posedge clk_i or posedge rst_i)
+always @ (posedge clk_i )
 if (rst_i)
     gpio_int_mask_wr_q <= 1'b0;
 else if (write_en_w && (cfg_awaddr_i[7:0] == `GPIO_INT_MASK))
@@ -198,7 +198,7 @@ else
 // gpio_int_mask_enable [internal]
 reg [31:0]  gpio_int_mask_enable_q;
 
-always @ (posedge clk_i or posedge rst_i)
+always @ (posedge clk_i )
 if (rst_i)
     gpio_int_mask_enable_q <= 32'd`GPIO_INT_MASK_ENABLE_DEFAULT;
 else if (write_en_w && (cfg_awaddr_i[7:0] == `GPIO_INT_MASK))
@@ -212,7 +212,7 @@ wire [31:0]  gpio_int_mask_enable_out_w = gpio_int_mask_enable_q;
 //-----------------------------------------------------------------
 reg gpio_int_set_wr_q;
 
-always @ (posedge clk_i or posedge rst_i)
+always @ (posedge clk_i )
 if (rst_i)
     gpio_int_set_wr_q <= 1'b0;
 else if (write_en_w && (cfg_awaddr_i[7:0] == `GPIO_INT_SET))
@@ -229,7 +229,7 @@ wire [31:0]  gpio_int_set_sw_irq_out_w = wr_data_q[`GPIO_INT_SET_SW_IRQ_R];
 //-----------------------------------------------------------------
 reg gpio_int_clr_wr_q;
 
-always @ (posedge clk_i or posedge rst_i)
+always @ (posedge clk_i )
 if (rst_i)
     gpio_int_clr_wr_q <= 1'b0;
 else if (write_en_w && (cfg_awaddr_i[7:0] == `GPIO_INT_CLR))
@@ -246,7 +246,7 @@ wire [31:0]  gpio_int_clr_ack_out_w = wr_data_q[`GPIO_INT_CLR_ACK_R];
 //-----------------------------------------------------------------
 reg gpio_int_status_wr_q;
 
-always @ (posedge clk_i or posedge rst_i)
+always @ (posedge clk_i )
 if (rst_i)
     gpio_int_status_wr_q <= 1'b0;
 else if (write_en_w && (cfg_awaddr_i[7:0] == `GPIO_INT_STATUS))
@@ -260,7 +260,7 @@ else
 //-----------------------------------------------------------------
 reg gpio_int_level_wr_q;
 
-always @ (posedge clk_i or posedge rst_i)
+always @ (posedge clk_i )
 if (rst_i)
     gpio_int_level_wr_q <= 1'b0;
 else if (write_en_w && (cfg_awaddr_i[7:0] == `GPIO_INT_LEVEL))
@@ -271,7 +271,7 @@ else
 // gpio_int_level_active_high [internal]
 reg [31:0]  gpio_int_level_active_high_q;
 
-always @ (posedge clk_i or posedge rst_i)
+always @ (posedge clk_i )
 if (rst_i)
     gpio_int_level_active_high_q <= 32'd`GPIO_INT_LEVEL_ACTIVE_HIGH_DEFAULT;
 else if (write_en_w && (cfg_awaddr_i[7:0] == `GPIO_INT_LEVEL))
@@ -285,7 +285,7 @@ wire [31:0]  gpio_int_level_active_high_out_w = gpio_int_level_active_high_q;
 //-----------------------------------------------------------------
 reg gpio_int_mode_wr_q;
 
-always @ (posedge clk_i or posedge rst_i)
+always @ (posedge clk_i )
 if (rst_i)
     gpio_int_mode_wr_q <= 1'b0;
 else if (write_en_w && (cfg_awaddr_i[7:0] == `GPIO_INT_MODE))
@@ -296,7 +296,7 @@ else
 // gpio_int_mode_edge [internal]
 reg [31:0]  gpio_int_mode_edge_q;
 
-always @ (posedge clk_i or posedge rst_i)
+always @ (posedge clk_i )
 if (rst_i)
     gpio_int_mode_edge_q <= 32'd`GPIO_INT_MODE_EDGE_DEFAULT;
 else if (write_en_w && (cfg_awaddr_i[7:0] == `GPIO_INT_MODE))
@@ -359,7 +359,7 @@ end
 //-----------------------------------------------------------------
 reg rvalid_q;
 
-always @ (posedge clk_i or posedge rst_i)
+always @ (posedge clk_i )
 if (rst_i)
     rvalid_q <= 1'b0;
 else if (read_en_w)
@@ -374,7 +374,7 @@ assign cfg_rvalid_o = rvalid_q;
 //-----------------------------------------------------------------
 reg [31:0] rd_data_q;
 
-always @ (posedge clk_i or posedge rst_i)
+always @ (posedge clk_i )
 if (rst_i)
     rd_data_q <= 32'b0;
 else if (!cfg_rvalid_o || cfg_rready_i)
@@ -388,7 +388,7 @@ assign cfg_rresp_o = 2'b0;
 //-----------------------------------------------------------------
 reg bvalid_q;
 
-always @ (posedge clk_i or posedge rst_i)
+always @ (posedge clk_i )
 if (rst_i)
     bvalid_q <= 1'b0;
 else if (write_en_w)
@@ -415,7 +415,7 @@ wire gpio_int_clr_wr_req_w = gpio_int_clr_wr_q;
 reg [31:0] input_ms;
 reg [31:0] input_q;
 
-always @ (posedge clk_i or posedge rst_i )
+always @ (posedge clk_i )
 if (rst_i)
 begin
     input_ms <= 32'b0;
@@ -447,7 +447,7 @@ begin
         output_next_r = gpio_output_data_out_w;
 end
 
-always @ (posedge clk_i or posedge rst_i )
+always @ (posedge clk_i )
 if (rst_i)
     output_q  <= 32'b0;
 else
@@ -465,7 +465,7 @@ reg [31:0] interrupt_raw_r;
 
 reg [31:0] input_last_q;
 
-always @ (posedge clk_i or posedge rst_i )
+always @ (posedge clk_i )
 if (rst_i)
     input_last_q  <= 32'b0;
 else
@@ -498,7 +498,7 @@ begin
         interrupt_raw_r = interrupt_raw_r | gpio_int_set_sw_irq_out_w;
 end
 
-always @ (posedge clk_i or posedge rst_i )
+always @ (posedge clk_i )
 if (rst_i)
 begin
     intr_q <= 1'b0;

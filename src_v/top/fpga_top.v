@@ -666,7 +666,7 @@ assign rst_cpu_w       = ~enable_w[0];
 
 reg [31:0] reset_vector_q;
 
-always @ (posedge clk_i or posedge rst_i)
+always @ (posedge clk_i )
 if (rst_i)
     reset_vector_q <= 32'h80000000;
 else if (enable_w[`DBG_BIT_CAPTURE_HI] && enable_w[`DBG_BIT_BOOTADDR])
