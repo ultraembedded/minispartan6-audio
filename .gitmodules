@@ -1,0 +1,6 @@
+[submodule "src_c/lib/fat_io_lib"]
+	path = src_c/lib/fat_io_lib
+	url = https://github.com/ultraembedded/fat_io_lib.git
+[submodule "src_c/lib/libhelix-mp3"]
+	path = src_c/lib/libhelix-mp3
+	url = https://github.com/ultraembedded/libhelix-mp3.git
