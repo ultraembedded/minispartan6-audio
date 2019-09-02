@@ -32,7 +32,7 @@ This time, I've rebuilt it around my RISC-V (RV32IM) CPU, SDRAM controller and S
 | [riscv](https://github.com/ultraembedded/riscv) | RISC-V (RV32IM) |
 | [sdram](https://github.com/ultraembedded/core_sdram_axi4) | AXI4 SDRAM Controller |
 
-The application code will play any MP3s found on a FAT32 formatted SD card placed in the microSD card slot of the FPGA dev board.
+The application code will play any MP3s found in the root directory of a FAT32 formatted SD card placed in the microSD card slot of the FPGA dev board.
 
 ## Scarab Hardware miniSpartan6+
 ![](doc/minispartan6.jpg)
@@ -126,8 +126,24 @@ Specific Feature Utilization:
   Number of SUSPEND_SYNCs:                       0 out of       1    0%
 ```
 
-## Example Console Output
+## Running Firmware
+
+To build the firmware, make sure the RISC-V GCC (built for RV32IM) are in the PATH, then type:
 ```
+# Add RISC-V GCC to path
+export PATH=$PATH:/opt/riscv32im/bin/
+
+# Build firmware
+make
+```
+
+The FPGA board has a FTDI dual channel FT2232H where channel A (usually /dev/ttyUSB1) is used for loading the bitstream, and channel B (usually /dev/ttyUSB2) is used for a virtual serial port.
+
+The tools provided for loading the firmware need to be pointed at channel B, e.g;
+
+```
+make run TARGET_PORT=/dev/ttyUSB2
+
 ELF: Loading 0x80000000 - size 79KB
  |XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX| 100.0% 
 
@@ -160,4 +176,15 @@ Directory /
 11  The Chemical Brothers - Harpoons.mp3 [3482479 bytes]
 12  The Chemical Brothers - The Pills Won't Help You Now.mp3 [9438397 bytes]
 Playing '/01  Kaiser Chiefs - Ruby.mp3'..
+```
+
+The python firmware loader tools require access to the serial port (user permissions), python-serial and ELF libraries;
+
+```
+# Pip install of required python libraries
+pip install pyserial --upgrade
+pip install pyelftools --upgrade
+
+# (or) Ubuntu/Debian/Mint python libraries install
+sudo apt-get install python-serial python-pyelftools
 ```
